@@ -350,6 +350,9 @@ def push_to_datastore(task_id, input, dry_run=False):
         # otherwise we won't get file from private resources
         headers['Authorization'] = api_key
     try:
+        # TODO: find a better way to do this
+        if '/file_uploader_ui/download/' in url:
+            headers['Authorization'] = api_key
         response = requests.get(
             url,
             headers=headers,
